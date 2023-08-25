@@ -1,0 +1,62 @@
+
+<script src="form-page.component.ts"></script>
+<div class="contenedor mt-4">
+  <form [formGroup]="agendaForm" class="grid mat-elevation-z4">
+
+
+    <mat-form-field class="sm:col-12 md:col-6">
+      <mat-label>Nombre(s)</mat-label>
+      <input
+        formControlName="name"
+        matInput
+        maxlength="20"
+      >
+      <mat-error>{{getErrorMessage()}}</mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="sm:col-12 md:col-6">
+      <mat-label>Apellidos</mat-label>
+      <input
+        formControlName="lastName"
+        matInput
+        maxlength="20"
+      >
+      <mat-error>{{getErrorMessage()}}</mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="sm:col-12 md:col-6">
+      <mat-label>Telefono: </mat-label>
+      <input
+        formControlName="cellPhone"
+        matInput
+        maxlength="10"
+      >
+      <mat-error>{{getErrorMessage()}}</mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="sm:col-12 md:col-6">
+      <mat-label>Email</mat-label>
+      <input
+        formControlName="email"
+        matInput
+      >
+      <mat-error>{{getErrorEmailMessage()}}</mat-error>
+    </mat-form-field>
+
+    <mat-form-field class=" col-12">
+      <mat-label>Dirección</mat-label>
+      <input
+        formControlName="address"
+        matInput
+        maxlength="50"
+      >
+      <mat-error>{{getErrorMessage()}}</mat-error>
+    </mat-form-field>
+
+    <div class="col-12 flex justify-content-evenly">
+      <button mat-raised-button color="primary" (click)="onSubmit()" [disabled]="agendaForm.invalid" >Guardar</button>
+      <button mat-raised-button color="warn" (click)="onDelete()" *ngIf="agendaForm.value._id">Eliminar</button>
+      <button mat-raised-button routerLink="/dashboard">Regresar</button>
+    </div>
+  </form>
+</div>

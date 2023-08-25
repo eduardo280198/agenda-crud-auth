@@ -1,0 +1,26 @@
+
+.mat-sidenav-container {
+  height: 89%;
+}
+
+@media (min-height: 655px){
+  .mat-sidenav-container {
+    height: 93%;
+  }
+}
+
+mat-sidenav {
+  width: 200px;
+}
+
+mat-sidenav.mat-drawer {
+  transition: margin 0.3s;
+}
+
+mat-sidenav.mat-drawer.mat-drawer-end {
+  margin-right: -200px;
+}
+
+.mat-drawer-opened.mat-drawer-end {
+  margin-right: 0;
+}

@@ -1,0 +1,21 @@
+<mat-nav-list>
+  <div id="navbarNav">
+    <ul>
+
+      <li>
+        <a mat-button routerLink="/dashboard" routerLinkActive (click)="onOptionSelected()">Agenda</a>
+      </li>
+
+      <li *ngIf="!loginButton()">
+        <a mat-button routerLink="/auth/login" routerLinkActive (click)="onOptionSelected()">Iniciar Sesión</a>
+      </li>
+
+      <li *ngIf="loginButton()">
+        <a mat-button (click)="onLogout()" routerLink="/auth/login">Cerrar sesión</a>
+      </li>
+
+    </ul>
+  </div>
+</mat-nav-list>
+
+

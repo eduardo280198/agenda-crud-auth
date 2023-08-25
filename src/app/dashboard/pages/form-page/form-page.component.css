@@ -1,0 +1,6 @@
+@media (max-width: 575px) {
+  form{
+    display: grid;
+    grid-auto-columns: minmax(100px,auto);
+  }
+}

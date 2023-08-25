@@ -1,0 +1,89 @@
+
+<div class="contenedor-tabla mt-4">
+
+  <!-- La barra de busqueda -->
+  <mat-form-field>
+    <mat-label >Buscar...</mat-label>
+    <input
+      matInput
+      (keyup)="applyFilter($event)"
+      placeholder="Ej. Eduardo"
+      #filter
+    >
+  </mat-form-field>
+  <!--  Hasta aqui es la barra de busqueda... -->
+
+  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 mb-2">
+
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef>Nombre(s)</th>
+      <td mat-cell *matCellDef="let persona">{{persona.name}}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="lastName">
+      <th mat-header-cell *matHeaderCellDef>Apellidos</th>
+      <td mat-cell *matCellDef="let persona">{{persona.lastName}}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="cellPhone">
+      <th mat-header-cell *matHeaderCellDef>Telefono</th>
+      <td mat-cell *matCellDef="let persona">{{persona.cellPhone}}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="email">
+      <th mat-header-cell *matHeaderCellDef>Email</th>
+      <td mat-cell *matCellDef="let persona">{{persona.email}}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="address">
+      <th mat-header-cell *matHeaderCellDef>Dirección</th>
+      <td mat-cell *matCellDef="let persona">{{persona.address}}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="actions">
+      <th mat-header-cell *matHeaderCellDef>&nbsp;</th>
+      <td mat-cell *matCellDef="let persona">
+        <button mat-icon-button [matMenuTriggerFor]="menu">
+          <mat-icon>more_vert</mat-icon>
+        </button>
+
+        <!-- Menu expansible de la tabla -->
+        <mat-menu #menu="matMenu">
+
+          <button mat-menu-item [routerLink]="['editar', persona._id]" >
+            <mat-icon color="primary">edit</mat-icon>
+            <span>Editar</span>
+          </button>
+
+          <button mat-menu-item (click)="onDelete(persona)">
+            <mat-icon color="warn">delete</mat-icon>
+            <span>Eliminar</span>
+          </button>
+
+        </mat-menu>
+
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayColumnsActions"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayColumnsActions;"></tr>
+
+    <!-- En caso de no coincidir con la busqueda, se muestra el siguiente mensaje -->
+    <tr class="mat-row" *matNoDataRow>
+      <td class="mat-cell" colspan="4">No hay coincidencias con {{filter.value}}</td>
+    </tr>
+  </table>
+
+  <!--  Paginación -->
+  <mat-paginator
+    [pageSizeOptions]="[ 5, 10, 20 ]"
+    showFirstLastButtons
+  >
+  </mat-paginator>
+
+  <div class="flex justify-content-end mt-2">
+    <button mat-raised-button color="primary" routerLink="agregar">Agregar</button>
+
+  </div>
+
+</div>
